@@ -1,0 +1,652 @@
+{
+  "config_name": "main",
+  "numeric_measures": {
+    "use_it": true,
+    "measures": [
+      {
+        "measure_name": "Объем",
+        "SemantiX": {
+          "merge_mode": "1",
+          "exclude_rx": false,
+          "use_it": true
+        },
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 10
+        },
+        "measure_data": {
+          "common_prefix": "[^\\\\\\/а-яa-z0-9]",
+          "common_postfix": "",
+          "common_max_count": 1,
+          "special_value_search": null,
+          "units": [
+            {
+              "unit_name": "Миллилитр",
+              "symbol": "мл|миллилитр(?:ов)?|ml|milliliters?|millilitres?",
+              "relative_weight": 1,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Литр",
+              "symbol": "литр(?:ов)?|л|l|litres?|liters?",
+              "relative_weight": 1000,
+              "prefix": "common",
+              "postfix": "[^а-яa-z]",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            }
+          ]
+        }
+      },
+      {
+        "measure_name": "Вес",
+        "SemantiX": {
+          "merge_mode": "1",
+          "exclude_rx": false,
+          "use_it": true
+        },
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 10
+        },
+        "measure_data": {
+          "common_prefix": "[^0-9]",
+          "common_postfix": "[^\\\\\\/]",
+          "common_max_count": 1,
+          "special_value_search": null,
+          "units": [
+            {
+              "unit_name": "Микрограмм",
+              "symbol": "мкг|микрограмм|µg|ug|microgram",
+              "relative_weight": 1,
+              "prefix": "common",
+              "postfix": "[^\\\\\\/a-z]",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Миллиграмм",
+              "symbol": "мг|миллиграмм|mg|milligram",
+              "relative_weight": 1000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Грамм",
+              "symbol": "г|гр|г[.]|грамм|g|gr|gram",
+              "relative_weight": 1000000,
+              "prefix": "common",
+              "postfix": "[^\\\\\\/a-zа-я]",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Килограмм",
+              "symbol": "кг|килограмм|kg|kilogram",
+              "relative_weight": 1000000000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            }
+          ]
+        }
+      },
+      {
+        "measure_name": "Количество",
+        "SemantiX": {
+          "merge_mode": "1",
+          "exclude_rx": true,
+          "use_it": true
+        },
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 10
+        },
+        "measure_data": {
+          "common_prefix": "[^0-9]",
+          "common_postfix": "[^а-я]",
+          "common_max_count": 1,
+          "special_value_search": "([2-9][,.]?\\d*|[1-9]\\d+[,.]?\\d*)",
+          "units": [
+            {
+              "unit_name": "Штуки",
+              "symbol": "шт|уп|пач|штук|упак|упаковок|пачек",
+              "relative_weight": 1,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Номера",
+              "symbol": "№|\\sn|\\s[xх]",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "[^0-9]",
+              "max_count": 1,
+              "search_mode": "front",
+              "use_it": true
+            }
+          ]
+        }
+      },
+      {
+        "measure_name": "Объем памяти",
+        "SemantiX": {
+          "merge_mode": "1",
+          "exclude_rx": false,
+          "use_it": true
+        },
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 10
+        },
+        "measure_data": {
+          "common_prefix": "[^0-9]",
+          "common_postfix": "",
+          "common_max_count": 1,
+          "special_value_search": null,
+          "units": [
+            {
+              "unit_name": "Килобайт",
+              "symbol": "kb|kilobyte|килобайт|кб",
+              "relative_weight": 1,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Мегабайт",
+              "symbol": "mb|megabyte|мегабайт|мб",
+              "relative_weight": 1000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Гигабайт",
+              "symbol": "gb|gigabyte|гигабайт|гб",
+              "relative_weight": 1000000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Террабайт",
+              "symbol": "tb|terabyte|терабайт|тб",
+              "relative_weight": 1000000000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            }
+          ]
+        }
+      },
+      {
+        "measure_name": "Концентрация на дозу",
+        "SemantiX": {
+          "merge_mode": "1",
+          "exclude_rx": false,
+          "use_it": true
+        },
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 10
+        },
+        "measure_data": {
+          "common_prefix": "[^0-9]",
+          "common_postfix": "",
+          "common_max_count": 1,
+          "special_value_search": null,
+          "units": [
+            {
+              "unit_name": "Микрограмм на дозу",
+              "symbol": "мкг[\\\\\\/](?:доз|сут)",
+              "relative_weight": 1,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Миллиграмм на дозу",
+              "symbol": "мг[\\\\\\/](?:доз|сут)",
+              "relative_weight": 1000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Грамм на дозу",
+              "symbol": "г[\\\\\\/](?:доз|сут)",
+              "relative_weight": 1000000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            }
+          ]
+        }
+      },
+      {
+        "measure_name": "Длина",
+        "SemantiX": {
+          "merge_mode": "1",
+          "exclude_rx": false,
+          "use_it": true
+        },
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 10
+        },
+        "measure_data": {
+          "common_prefix": "[^0-9]",
+          "common_postfix": "",
+          "common_max_count": 1,
+          "special_value_search": null,
+          "units": [
+            {
+              "unit_name": "Миллиметр",
+              "symbol": "мм|миллиметр|mm|millimeter",
+              "relative_weight": 1,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Сантиметр",
+              "symbol": "см|сантиметр|centimeter|cm",
+              "relative_weight": 10,
+              "prefix": "[^0-9.]",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Метр",
+              "symbol": "м\\s|метр|m\\s|meter",
+              "relative_weight": 1000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Километр",
+              "symbol": "км|километр|km|kilometer",
+              "relative_weight": 1000000,
+              "prefix": "common",
+              "postfix": "common",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "string_measures": {
+    "use_it": true,
+    "measures": [
+      {
+        "measure_name": "Цвет",
+        "SemantiX": {
+          "use_it": true,
+          "exclude_rx": false,
+          "merge_mode": "none"
+        },
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 10
+        },
+        "measure_data": {
+          "common_prefix": "\\s",
+          "common_postfix": "",
+          "common_max_count": 1,
+          "special_value_search": null,
+          "units": [
+            {
+              "unit_name": "Цвет Черный",
+              "symbol": "black|ч[её]рн",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Цвет Белый",
+              "symbol": "white|бел",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Цвет Синий",
+              "symbol": "blue|син",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Цвет Зеленый",
+              "symbol": "green|зелен",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Цвет Красный",
+              "symbol": "red|красн",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Цвет Желтый",
+              "symbol": "yellow|ж[её]лт",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Цвет Коричневый",
+              "symbol": "brown|коричн",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            }
+          ]
+        }
+      },
+      {
+        "measure_name": "Лекарственная Форма",
+        "SemantiX": {
+          "use_it": false,
+          "exclude_rx": false,
+          "merge_mode": "none"
+        },
+        "FeatureFlow": {
+          "use_it": false,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 10
+        },
+        "measure_data": {
+          "common_prefix": "\\s",
+          "common_postfix": "",
+          "common_max_count": 1,
+          "special_value_search": null,
+          "units": [
+            {
+              "unit_name": "Таблетка",
+              "symbol": "таб|тб[.]|тб\b|тбл",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Драже",
+              "symbol": "драж|др[.]",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Гранула",
+              "symbol": "гран",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Порошок",
+              "symbol": "порош",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Капсула",
+              "symbol": "капс",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Сбор",
+              "symbol": "сбор",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Карамель",
+              "symbol": "карам",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Карандаш",
+              "symbol": "каранд",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Крем",
+              "symbol": "крем",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Мазь",
+              "symbol": "мазь",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Гель",
+              "symbol": "гель",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Суппозитории",
+              "symbol": "супп|свеч",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Паста",
+              "symbol": "паст",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Капли",
+              "symbol": "кап.|кап\b|капл",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Настойка",
+              "symbol": "наст",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Сироп",
+              "symbol": "сироп",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Суспензия",
+              "symbol": "сусп",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            },
+            {
+              "unit_name": "Эмульсия",
+              "symbol": "эмул",
+              "relative_weight": 1,
+              "prefix": "",
+              "postfix": "",
+              "max_count": 1,
+              "search_mode": "behind",
+              "use_it": true
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "complex_measures": {
+    "use_it": true,
+    "measures": [
+      {
+        "measure_name": "Complex Dimension",
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 1
+        }
+      },
+      {
+        "measure_name": "Complex Concentration",
+        "FeatureFlow": {
+          "use_it": true,
+          "validation_mode": "strict",
+          "not_found_mode": "strict",
+          "priority": 2
+        }
+      }
+    ]
+  }
+}
