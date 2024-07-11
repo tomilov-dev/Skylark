@@ -28,4 +28,4 @@ Skylark consists of 3 main modules:
 
 # Some problems
 
-- v1 release don't have a lot of input validators. For example, if you type wrong column name that doesn't exist, app will carsh. Same with config - it doesn't have validation.
+- v1 was not tested in production. So it may have hidden bugs.
