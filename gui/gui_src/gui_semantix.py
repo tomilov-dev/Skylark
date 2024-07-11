@@ -35,6 +35,14 @@ class SemantixGUIGracefullExit(Exception):
     pass
 
 
+class ColumnDoesNotExists(Exception):
+    pass
+
+
+class FileUploadException(Exception):
+    pass
+
+
 class SemantixProcessRunner(QThread):
     def __init__(
         self,
@@ -77,7 +85,7 @@ class SemantixProcessRunner(QThread):
         elif ".xlsx" in self.data_path:
             data = pd.read_excel(self.data_path)
         else:
-            raise ValueError("File should be Excel or csv")
+            raise FileUploadException("File should be Excel or csv")
         return data
 
     def setup_crosser_lang_rules(
@@ -149,6 +157,9 @@ class SemantixProcessRunner(QThread):
             self.call_status("Загружаю данные")
             data = self.upload_data()
 
+            if self.column not in data.columns:
+                raise ColumnDoesNotExists
+
             data = self.run_measure_extraction(data)
             data = self.run_cross_semantic(data)
 
@@ -161,7 +172,21 @@ class SemantixProcessRunner(QThread):
                 self.run_button_callback(RunButtonStatus.STOPPED)
 
         except SemantixGUIGracefullExit:
-            self.call_status("Остановлено")
+            self.call_status("Остановлено: процесс закончен вручную")
+            self.call_progress(0)
+
+            if self.run_button_callback is not None:
+                self.run_button_callback(RunButtonStatus.STOPPED)
+
+        except ColumnDoesNotExists:
+            self.call_status("Ошибка: указанного столбца не существует")
+            self.call_progress(0)
+
+            if self.run_button_callback is not None:
+                self.run_button_callback(RunButtonStatus.STOPPED)
+
+        except FileUploadException:
+            self.call_status("Остановлено: указан неправильный файл")
             self.call_progress(0)
 
             if self.run_button_callback is not None:

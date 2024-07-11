@@ -32,6 +32,14 @@ class SimFyzerGUIGracefullExit(Exception):
     pass
 
 
+class ColumnDoesNotExists(Exception):
+    pass
+
+
+class FileUploadException(Exception):
+    pass
+
+
 class SimFyzerProcessRunner(QThread):
     def __init__(
         self,
@@ -72,7 +80,7 @@ class SimFyzerProcessRunner(QThread):
         elif ".xlsx" in self.data_path:
             data = pd.read_excel(self.data_path)
         else:
-            raise ValueError("File should be Excel or csv")
+            raise FileUploadException("File should be Excel or csv")
         return data
 
     def stop_callback(self) -> None:
@@ -110,6 +118,11 @@ class SimFyzerProcessRunner(QThread):
             self.call_status("Загружаю данные")
             data = self.upload_data()
 
+            if self.client_column not in data.columns:
+                raise ColumnDoesNotExists
+            if self.source_column not in data.columns:
+                raise ColumnDoesNotExists
+
             self.call_status("Начинаю валидацию")
             data = self.run_validator(data, self._process_pool)
 
@@ -123,6 +136,20 @@ class SimFyzerProcessRunner(QThread):
 
         except SimFyzerGUIGracefullExit:
             self.call_status("Остановлено")
+            self.call_progress(0)
+
+            if self.run_button_callback is not None:
+                self.run_button_callback(RunButtonStatus.STOPPED)
+
+        except ColumnDoesNotExists:
+            self.call_status("Ошибка: указанного столбца не существует")
+            self.call_progress(0)
+
+            if self.run_button_callback is not None:
+                self.run_button_callback(RunButtonStatus.STOPPED)
+
+        except FileUploadException:
+            self.call_status("Остановлено: указан неправильный файл")
             self.call_progress(0)
 
             if self.run_button_callback is not None:

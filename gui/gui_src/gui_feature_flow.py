@@ -35,6 +35,14 @@ class FeatureFlowGUIGracefullExit(Exception):
     pass
 
 
+class ColumnDoesNotExists(Exception):
+    pass
+
+
+class FileUploadException(Exception):
+    pass
+
+
 class FeatureFlowProcessRunner(QThread):
     def __init__(
         self,
@@ -60,6 +68,9 @@ class FeatureFlowProcessRunner(QThread):
         self.progress_callback = progress_callback
         self.run_button_callback = run_button_callback
 
+        self.client_column = client_column
+        self.source_column = source_column
+
         self.validator = FeatureFlow(
             client_column,
             source_column,
@@ -74,7 +85,7 @@ class FeatureFlowProcessRunner(QThread):
         elif ".xlsx" in self.data_path:
             data = pd.read_excel(self.data_path)
         else:
-            raise ValueError("File should be Excel or csv")
+            raise FileUploadException("File should be Excel or csv")
         return data
 
     def stop_callback(self) -> None:
@@ -107,6 +118,11 @@ class FeatureFlowProcessRunner(QThread):
             self.call_status("Загружаю данные")
             data = self.upload_data()
 
+            if self.client_column not in data.columns:
+                raise ColumnDoesNotExists
+            if self.source_column not in data.columns:
+                raise ColumnDoesNotExists
+
             data = self.run_validator(data, self._process_pool)
 
             self.call_status("Сохраняю результат")
@@ -119,6 +135,20 @@ class FeatureFlowProcessRunner(QThread):
 
         except FeatureFlowGUIGracefullExit:
             self.call_status("Остановлено")
+            self.call_progress(0)
+
+            if self.run_button_callback is not None:
+                self.run_button_callback(RunButtonStatus.STOPPED)
+
+        except ColumnDoesNotExists:
+            self.call_status("Ошибка: указанного столбца не существует")
+            self.call_progress(0)
+
+            if self.run_button_callback is not None:
+                self.run_button_callback(RunButtonStatus.STOPPED)
+
+        except FileUploadException:
+            self.call_status("Остановлено: указан неправильный файл")
             self.call_progress(0)
 
             if self.run_button_callback is not None:
